@@ -3,46 +3,34 @@
 abstract class Personnage
 {
 
-    public function __construct(protected int $hp, protected int $atk,protected int $def) 
-    {
-
-    }
+    public function __construct(protected int $hp, protected int $atk, protected int $def) {}
 
     public function getHp(): Int
     {
         return $this->hp;
     }
 
-       public function setHp(int $health): self
+    public function setHp(int $damage): self
     {
-        $this->hp  = $health;
-
+        $this->hp -= $damage;
         return $this;
     }
-
 
     public function getAtk(): Int
     {
         return $this->atk;
     }
 
-       public function setAtk(int $attack): self
-    {
-        $this->atk  = $attack;
-
-        return $this;
-    }
-
-
     public function getDef(): Int
     {
         return $this->def;
     }
 
-    public function setDef(int $defense): self
-    {
-        $this->def  = $defense;
 
-        return $this;
+    public function Attack(Personnage $cible): self
+    {
+        $damage = max(1,$this->atk - $cible->getDef());
+
+        return $cible->setHp($damage);
     }
 }
