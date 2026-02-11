@@ -12,7 +12,7 @@ final class Guerrier extends Hero
             $damage = max(1, $this->atk * 2 - $cible->getDef());
             $this->rage--;
         } else {
-            $damage = max(1, $this->atk - $this->getDef());
+            $damage = max(1, $this->atk - $cible->getDef());
         }
 
         return $cible->setHp($damage);
