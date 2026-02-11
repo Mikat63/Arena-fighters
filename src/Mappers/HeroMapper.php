@@ -1,37 +1,37 @@
 <?php
 
-final class MonsterMapper
+final class HeroMapper
 {
-    public function mapToObject(array $data): Monster
+    public function mapToObject(array $data): Hero
     {
         return match (strtolower($data['type'])) {
-            'dragon' => new Dragon(
+            'guerrier' => new Guerrier(
                 id: $data['id'],
                 name: $data['name'],
                 hp: $data['hp'],
                 atk: $data['atk'],
                 def: $data['def'],
                 type: $data['type'],
-                megaAttackCharged: $data['mega_attack']
+                rage: $data['rage']
             ),
-            'orc' => new Orc(
+            'mage' => new Magician(
+                id: $data['id'],
+                name: $data['name'],
+                hp: $data['hp'],
+                atk: $data['atk'],
+                def: $data['def'],
+                type: $data['type'],
+                mana: $data['mana']
+            ),
+            'archer' => new Archer(
                 id: $data['id'],
                 name: $data['name'],
                 hp: $data['hp'],
                 atk: $data['atk'],
                 def: $data['def'],
                 type: $data['type']
-                
             ),
-            'golem' => new Golem(
-                id: $data['id'],
-                name: $data['name'],
-                hp: $data['hp'],
-                atk: $data['atk'],
-                def: $data['def'],
-                type: $data['type']
-            ),
-             default => throw new Exception("Type de monstres inconnu : {$data['type']}")
+             default => throw new Exception("Type de héros inconnu : {$data['type']}")
         };
     }
 }

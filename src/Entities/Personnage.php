@@ -3,7 +3,7 @@
 abstract class Personnage
 {
 
-    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def) {}
+    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def, protected string $type) {}
 
     public function getId(): int
     {
@@ -36,10 +36,15 @@ abstract class Personnage
         return $this->def;
     }
 
-
-    public function Attack(Personnage $cible): self
+    public function getType(): string
     {
-        $damage = max(1,$this->atk - $cible->getDef());
+        return $this->type;
+    }
+
+
+    public function attack(Personnage $cible): self
+    {
+        $damage = max(1, $this->atk - $cible->getDef());
 
         return $cible->setHp($damage);
     }
