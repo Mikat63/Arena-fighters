@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 11 fév. 2026 à 14:11
+-- Généré le : mer. 11 fév. 2026 à 14:28
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -24,35 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `monsters`
+-- Structure de la table `hero`
 --
 
-DROP TABLE IF EXISTS `monsters`;
-CREATE TABLE IF NOT EXISTS `monsters` (
+DROP TABLE IF EXISTS `hero`;
+CREATE TABLE IF NOT EXISTS `hero` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `hp` bigint NOT NULL,
   `atk` bigint NOT NULL,
   `def` bigint NOT NULL,
+  `mana` bigint DEFAULT NULL,
+  `rage` bigint DEFAULT NULL,
   `type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `monsters`
+-- Déchargement des données de la table `hero`
 --
 
-INSERT INTO `monsters` (`id`, `Name`, `hp`, `atk`, `def`, `type`) VALUES
-(1, 'Orc Grinçant', 55, 12, 5, 'orc'),
-(2, 'Orc Éclaireur', 65, 14, 6, 'orc'),
-(3, 'Orc Berserker', 75, 18, 5, 'orc'),
-(4, 'Golem de Terre', 130, 14, 13, 'golem'),
-(5, 'Golem de Pierre', 120, 12, 12, 'golem'),
-(6, 'Golem Runique', 110, 16, 14, 'golem'),
-(7, 'Dragon Rouge', 140, 18, 9, 'dragon'),
-(8, 'Dragons des Cendres', 170, 20, 11, 'dragon'),
-(9, 'Dragon Ancien', 200, 22, 12, 'dragon'),
-(10, 'Dragon Noir', 190, 25, 11, 'dragon');
+INSERT INTO `hero` (`id`, `name`, `hp`, `atk`, `def`, `mana`, `rage`, `type`) VALUES
+(1, 'Ragnar', 110, 16, 12, NULL, 2, 'guerrier'),
+(2, 'Bjorn', 95, 18, 10, NULL, 2, 'guerrier'),
+(3, 'Elyra', 75, 21, 6, 1, NULL, 'mage'),
+(4, 'Solwen', 70, 23, 5, 1, NULL, 'mage'),
+(5, 'Kael', 85, 17, 7, NULL, NULL, 'Archer'),
+(6, 'Lyria', 80, 19, 6, NULL, NULL, 'archer');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
