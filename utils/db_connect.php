@@ -1,6 +1,6 @@
 <?php
 try {
-    $dsn = "mysql:HOST=localhost;dbname=brain_quiz";
+    $dsn = "mysql:HOST=localhost;dbname=arena_fighters";
     $user = "root";
     $password = "";
 
