@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 12 fév. 2026 à 12:46
+-- Généré le : ven. 13 fév. 2026 à 15:58
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -24,33 +24,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `heros`
+-- Structure de la table `monsters`
 --
 
-DROP TABLE IF EXISTS `heros`;
-CREATE TABLE IF NOT EXISTS `heros` (
+DROP TABLE IF EXISTS `monsters`;
+CREATE TABLE IF NOT EXISTS `monsters` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `hp` bigint NOT NULL,
   `atk` bigint NOT NULL,
   `def` bigint NOT NULL,
-  `mana` bigint DEFAULT NULL,
-  `rage` bigint DEFAULT NULL,
+  `mega_attack` varchar(50) DEFAULT NULL,
   `type` varchar(50) NOT NULL,
+  `fight_background` varchar(255) NOT NULL,
+  `character_img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `heros`
+-- Déchargement des données de la table `monsters`
 --
 
-INSERT INTO `heros` (`id`, `name`, `hp`, `atk`, `def`, `mana`, `rage`, `type`) VALUES
-(1, 'Ragnar', 110, 16, 12, NULL, 2, 'guerrier'),
-(2, 'Bjorn', 95, 18, 10, NULL, 2, 'guerrier'),
-(3, 'Elyra', 75, 21, 6, 1, NULL, 'mage'),
-(4, 'Solwen', 70, 23, 5, 1, NULL, 'mage'),
-(5, 'Kael', 85, 17, 7, NULL, NULL, 'Archer'),
-(6, 'Lyria', 80, 19, 6, NULL, NULL, 'archer');
+INSERT INTO `monsters` (`id`, `name`, `hp`, `atk`, `def`, `mega_attack`, `type`, `fight_background`, `character_img`) VALUES
+(1, 'Orc Grinçant', 55, 12, 5, NULL, 'orc', './assets\\backgrounds\\decors-jeu-combat-052.gif', ''),
+(2, 'Orc Éclaireur', 65, 14, 6, NULL, 'orc', '', ''),
+(3, 'Orc Berserker', 75, 18, 5, NULL, 'orc', '', ''),
+(4, 'Golem de Terre', 130, 14, 13, NULL, 'golem', '', ''),
+(5, 'Golem de Pierre', 120, 12, 12, NULL, 'golem', '', ''),
+(6, 'Golem Runique', 110, 16, 14, NULL, 'golem', '', ''),
+(7, 'Dragon Rouge', 140, 18, 9, '1', 'dragon', '', ''),
+(8, 'Dragons des Cendres', 170, 20, 11, '2', 'dragon', '', ''),
+(9, 'Dragon Ancien', 200, 22, 12, '3', 'dragon', './assets\\backgrounds\\decors-jeu-combat-066.gif', ''),
+(10, 'Dragon Noir', 190, 25, 11, '2', 'dragon', '', '');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
