@@ -12,6 +12,7 @@ final class MonsterMapper
                 atk: $data['atk'],
                 def: $data['def'],
                 type: $data['type'],
+                backgroundFight: $data['fight_background'],
                 megaAttackCharged: $data['mega_attack']
             ),
             'orc' => new Orc(
@@ -20,8 +21,10 @@ final class MonsterMapper
                 hp: $data['hp'],
                 atk: $data['atk'],
                 def: $data['def'],
-                type: $data['type']
-                
+                type: $data['type'],
+                backgroundFight: $data['fight_background'],
+
+
             ),
             'golem' => new Golem(
                 id: $data['id'],
@@ -29,9 +32,11 @@ final class MonsterMapper
                 hp: $data['hp'],
                 atk: $data['atk'],
                 def: $data['def'],
-                type: $data['type']
+                type: $data['type'],
+                backgroundFight: $data['fight_background'],
+
             ),
-             default => throw new Exception("Type de monstres inconnu : {$data['type']}")
+            default => throw new Exception("Type de monstres inconnu : {$data['type']}")
         };
     }
 }

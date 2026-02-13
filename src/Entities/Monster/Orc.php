@@ -1,8 +1,8 @@
 <?php
 final class Orc extends Monster
 {
-    public function __construct(int $id, string $name, int $hp, int $atk, int $def,string $type)
+    public function __construct(int $id, string $name, int $hp, int $atk, int $def, string $type, string $backgroundFight)
     {
-        parent::__construct($id, $name, $hp, $atk, $def,$type);
+        parent::__construct($id, $name, $hp, $atk, $def, $type, $backgroundFight);
     }
 }
