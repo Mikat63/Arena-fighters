@@ -13,9 +13,5 @@
     <link rel="preload" href="./assets/fonts/Oswald/static/Oswald-Regular.ttf" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS & JS -->
-    <link rel="stylesheet" href="../../style.css">
-    <script defer src="./assets/scripts/main.js"></script>
+    <link rel="stylesheet" href="../style.css">
     <title> Arena Fighters - <?= $title ?> </title>
-</head>
-
-<body>
