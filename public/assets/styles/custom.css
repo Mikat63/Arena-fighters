@@ -1,1 +1,30 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+:root {
+  --font-manrope: "Manrope";
+  --font-oswald: "Oswald";
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("public/assets/fonts/Manrope/Manrope-VariableFont_wght.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("public/assets/fonts/Oswald/static/Oswald-Regular.woff2")
+    format("woff2");
+  font-display: swap;
+  font-weight: 400;
+}
+
+.font-family-manrope {
+  font-family: var(--font-manrope);
+}
+
+.font-family-oswald {
+  font-family: var(--font-oswald);
+}
