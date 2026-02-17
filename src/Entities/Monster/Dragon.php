@@ -1,9 +1,9 @@
 <?php
 final class Dragon extends Monster
 {
-    public function __construct(int $id, string $name, int $hp, int $atk, int $def,  string $type, string $backgroundFight, private int $megaAttackCharged)
+    public function __construct(int $id, string $name, int $hp, int $atk, int $def,  string $type, string $backgroundFight, string $characterImg, private int $megaAttackCharged)
     {
-        parent::__construct($id, $name, $hp, $atk, $def, $type, $backgroundFight);
+        parent::__construct($id, $name, $hp, $atk, $def, $type, $backgroundFight, $characterImg);
     }
 
     public function getMegaAttack(): int

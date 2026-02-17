@@ -1,9 +1,9 @@
 <?php
 final class Magician extends Hero
 {
-    public function __construct(int $id, string $name, int $hp, int $atk, int $def, string $type, protected int $mana = 1)
+    public function __construct(int $id, string $name, int $hp, int $atk, int $def, string $type,string $characterImg, protected int $mana = 1)
     {
-        parent::__construct($id, $name, $hp, $atk, $def, $type);
+        parent::__construct($id, $name, $hp, $atk, $def, $type,$characterImg);
     }
 
     public function getMana(): int

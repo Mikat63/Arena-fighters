@@ -3,7 +3,7 @@
 abstract class Personnage
 {
 
-    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def, protected string $type) {}
+    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def, protected string $type, private string $characterImg) {}
 
     public function getId(): int
     {
@@ -39,6 +39,11 @@ abstract class Personnage
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function getCharacterImg(): string
+    {
+        return $this->characterImg;
     }
 
 

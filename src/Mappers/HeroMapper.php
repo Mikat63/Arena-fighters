@@ -12,6 +12,7 @@ final class HeroMapper
                 atk: $data['atk'],
                 def: $data['def'],
                 type: $data['type'],
+                characterImg:$data['character_img'],
                 rage: $data['rage']
             ),
             'mage' => new Magician(
@@ -21,6 +22,7 @@ final class HeroMapper
                 atk: $data['atk'],
                 def: $data['def'],
                 type: $data['type'],
+                characterImg:$data['character_img'],
                 mana: $data['mana']
             ),
             'archer' => new Archer(
@@ -29,7 +31,8 @@ final class HeroMapper
                 hp: $data['hp'],
                 atk: $data['atk'],
                 def: $data['def'],
-                type: $data['type']
+                type: $data['type'],
+                characterImg:$data['character_img'],
             ),
              default => throw new Exception("Type de héros inconnu : {$data['type']}")
         };

@@ -13,6 +13,7 @@ final class MonsterMapper
                 def: $data['def'],
                 type: $data['type'],
                 backgroundFight: $data['fight_background'],
+                characterImg: $data['character_img'],
                 megaAttackCharged: $data['mega_attack']
             ),
             'orc' => new Orc(
@@ -23,6 +24,7 @@ final class MonsterMapper
                 def: $data['def'],
                 type: $data['type'],
                 backgroundFight: $data['fight_background'],
+                characterImg: $data['character_img']
 
 
             ),
@@ -34,6 +36,7 @@ final class MonsterMapper
                 def: $data['def'],
                 type: $data['type'],
                 backgroundFight: $data['fight_background'],
+                characterImg: $data['character_img']
 
             ),
             default => throw new Exception("Type de monstres inconnu : {$data['type']}")
