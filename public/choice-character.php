@@ -8,9 +8,9 @@ require_once "./partials/page-infos.php";
 $heroRepo = new HeroRepository($db, new HeroMapper);
 
 $herosArray = $heroRepo->findAllByType();
-
-
 ?>
+
+<script defer src="./assets/scripts/choice-character.js"></script>
 </head>
 
 <body class="w-full min-h-svh bg-[url('public/assets/backgrounds/home-bg.gif')] bg-cover bg-center bg-no-repeat">
@@ -21,13 +21,13 @@ $herosArray = $heroRepo->findAllByType();
             <?php
             foreach ($herosArray as $key => $heroArray) { ?>
 
-                <div class="flex flex-col gap-4 items-center">
+                <div class="flex flex-col gap-4 items-center ">
 
                     <h2 class="font-family-oswald text-white text-[28px] "><?= $key ?></h2>
                     <div class="flex flex-row gap-4 md:gap-6 justify-center flex-wrap md:flex-nowrap">
                         <?php
                         foreach ($heroArray as $hero) { ?>
-                            <div class="heroClass w-[calc(50%-0.5rem)] md:w-48 shrink-0" data-heroId="<?= $hero->getId() ?>">
+                            <div tabindex="0" class="heroCharacter w-[calc(50%-0.5rem)] md:w-48 shrink-0 cursor-pointer hover:scale-110 focus:scale-110 focus:outline-none" data-characterId="<?= $hero->getId() ?>">
                                 <div class="flex flex-row items-center justify-center mb-2">
                                     <h3 class="text-white font-family-manrope font-semibold text-[18px] md:text-[20px] "><?= htmlspecialchars(strip_tags($hero->getName())) ?></h3>
                                 </div>
