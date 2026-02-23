@@ -27,9 +27,9 @@ $herosArray = $heroRepo->findAllByType();
                     <div class="flex flex-row gap-4 md:gap-6 justify-center flex-wrap md:flex-nowrap">
                         <?php
                         foreach ($heroArray as $hero) { ?>
-                            <div tabindex="0" class="heroCharacter w-[calc(50%-0.5rem)] md:w-48 shrink-0 cursor-pointer hover:scale-110 focus:scale-110 focus:outline-none" data-characterId="<?= $hero->getId() ?>">
+                            <div tabindex="0" class="heroCharacter w-[calc(50%-0.5rem)] md:w-48 shrink-0 cursor-pointer hover:scale-110 focus:scale-110 focus:outline-none" data-characterId="<?= htmlspecialchars(strip_tags($hero->getId())) ?>">
                                 <div class="flex flex-row items-center justify-center mb-2">
-                                    <h3 class="text-white font-family-manrope font-semibold text-[18px] md:text-[20px] "><?= htmlspecialchars(strip_tags($hero->getName())) ?></h3>
+                                    <h3 class="text-white font-family-oswald font-semibold text-[18px] md:text-[20px] "><?= htmlspecialchars(strip_tags($hero->getName())) ?></h3>
                                 </div>
                                 <img class="w-full h-auto max-h-60 md:max-h-80 object-contain" src="<?= htmlspecialchars(strip_tags($hero->getCharacterImg())) ?>" alt="Personnage <?= htmlspecialchars(strip_tags($hero->getName())) ?>">
                             </div>

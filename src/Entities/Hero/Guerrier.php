@@ -1,9 +1,14 @@
 <?php
 final class Guerrier extends Hero
 {
-    public function __construct(int $id, string $name,int $hp, int $atk, int $def, string $type,string $characterImg, protected int $rage = 2)
+    public function __construct(int $id, string $name, int $hp, int $atk, int $def, string $type, string $characterImg, protected int $rage = 2)
     {
-        parent::__construct($id,$name,$hp, $atk, $def, $type,$characterImg);
+        parent::__construct($id, $name, $hp, $atk, $def, $type, $characterImg);
+    }
+
+    public function getRage(): int
+    {
+        return $this->rage;
     }
 
     public function rageAttack(Personnage $cible): self

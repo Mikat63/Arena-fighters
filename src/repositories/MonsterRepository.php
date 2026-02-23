@@ -4,29 +4,28 @@ class MonsterRepository
 {
     public function __construct(private PDO $db, private MonsterMapper $mapper) {}
 
-    public function findAllByType(): array
+    public function findAll(): array
     {
         $request = $this->db->prepare(
             'SELECT
                 *
             FROM
                 monsters
-            ORDER BY
-                type'
+            '
         );
 
         $request->execute();
 
         $monstersDatas = $request->fetchAll(PDO::FETCH_ASSOC);
 
-        $monstersByTypesArray = [];
+        $monstersArray = [];
 
         foreach ($monstersDatas as $monsterData) {
             $monster =  $this->mapper->mapToObject($monsterData);
-            $monstersByTypesArray[strtolower($monster->getType())][] = $monster;
+            $monstersArray[] = $monster;
         }
 
-        return  $monstersByTypesArray;
+        return  $monstersArray;
     }
 
     public function findOneById(int $idMonster): Monster

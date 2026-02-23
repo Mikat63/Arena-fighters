@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- fonts -->
-    <link rel="preload" href="./assets/fonts/Inter/static/Inter_18pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/Oswald/static/Oswald-Regular.ttf" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/Manrope/static/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/Oswald/static/Oswald-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS & JS -->
     <link rel="stylesheet" href="../style.css">
