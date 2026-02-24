@@ -22,7 +22,16 @@ abstract class Personnage
 
     public function setHp(int $damage): self
     {
+        if ($damage < 0) {
+            $damage = 0;
+        }
+
         $this->hp -= $damage;
+
+        if ($this->hp < 0) {
+            $this->hp = 0;
+        }
+
         return $this;
     }
 
@@ -50,6 +59,8 @@ abstract class Personnage
     public function attack(Personnage $cible): self
     {
         $damage = max(1, $this->atk - $cible->getDef());
+
+
 
         return $cible->setHp($damage);
     }

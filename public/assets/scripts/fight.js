@@ -68,42 +68,78 @@ function sendAction(type) {
     });
 }
 
+function nextFight(data) {
+  document.body.style.backgroundImage = `url('${data["nextMonsterBackground"]}')`;
+  document.querySelector("#monster-img").src = data["nextMonsterCharacterImg"];
+  document.querySelector("#monster-name").textContent = data["nextMonsterName"];
+  document.querySelector("#monster-atk").textContent = data["nextMonsterAtk"];
+  document.querySelector("#monster-def").textContent = data["nextMonsterDef"];
+}
+
 function updateScreenInfos(data) {
-    if(data['error'])
-        {
-            window.location = './choice-character.php' 
-        }
-
-
-  if (data["fighterDamage"] === "hero") {
-    heroHpValue.textContent = data["updateHp"];
-  } else {
-    monsterHpValue.textContent = data["updateHp"];
+  // error message
+  if (data["error"]) {
+    window.location = "./choice-character.php";
   }
 
-  if (heroRageValue) {
+  //   update if exist
+  if (data["rageAttack"]) {
     heroRageValue.textContent = data["heroRage"];
   }
 
-  if (heroManaValue) {
+  if (data["manaAttack"]) {
     heroManaValue.textContent = data["heroMana"];
   }
 
-  if (data["combatStatus"] === "heroWin") {
+  //   Combat result
+  if (data["combatStatus"] === "You win") {
+    atkBtn.disabled = true;
+    atkBtn.classList.add("opacity-50", "cursor-not-allowed");
+
+    if (rageBtn) {
+      rageBtn.disabled = true;
+      rageBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+
+    if (manaBtn) {
+      manaBtn.disabled = true;
+      manaBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+
     finalResult.textContent = data["combatStatus"];
     finalResult.classList.add("text-green-900");
 
     setTimeout(() => {
-      window.location = "./choice-character.php";
-    }, 3000);
+      nextFight(data);
+    }, 5000);
   }
 
-  if (data["combatStatus"] === "heroLose") {
+  if (data["combatStatus"] === "You lose") {
+    atkBtn.disabled = true;
+    atkBtn.classList.add("opacity-50", "cursor-not-allowed");
+
+    if (rageBtn) {
+      rageBtn.disabled = true;
+      rageBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+
+    if (manaBtn) {
+      manaBtn.disabled = true;
+      manaBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
+
     finalResult.textContent = data["combatStatus"];
     finalResult.classList.add("text-red-900");
 
     setTimeout(() => {
       window.location = "./choice-character.php";
-    }, 3000);
+    }, 5000);
   }
+
+  //   combat attack
+  monsterHpValue.textContent = data["updateMonsterHp"];
+
+  setTimeout(() => {
+    heroHpValue.textContent = data["updateHeroHp"];
+  }, 1500);
 }

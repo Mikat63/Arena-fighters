@@ -288,6 +288,9 @@
     --tw-translate-x: -100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .cursor-not-allowed {
+    cursor: not-allowed;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -525,6 +528,9 @@
   }
   .opacity-40 {
     opacity: 40%;
+  }
+  .opacity-50 {
+    opacity: 50%;
   }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));

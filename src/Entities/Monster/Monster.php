@@ -12,4 +12,11 @@ class Monster extends Personnage
     {
         return $this->backgroundFight;
     }
+
+    public function getId():int
+    {
+        return $this->id;
+    }
+
+  
 }
