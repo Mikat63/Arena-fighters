@@ -3,7 +3,7 @@
 abstract class Personnage
 {
 
-    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def, protected string $type, private string $characterImg) {}
+    public function __construct(protected int $id, protected string $name, protected int $hp, protected int $atk, protected int $def, protected string $type, protected string $characterImg) {}
 
     public function getId(): int
     {

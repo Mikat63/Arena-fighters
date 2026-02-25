@@ -11,7 +11,7 @@ final class Dragon extends Monster
         return $this->megaAttackCharged;
     }
 
-    public function megaAttack(Personnage $cible): self
+    public function megaAttack(Personnage $cible): void
     {
         if ($this->megaAttackCharged > 0) {
             $damage = max(1, $this->atk * 2.5 - $cible->getDef());
@@ -20,6 +20,6 @@ final class Dragon extends Monster
             $damage = max(1, $this->atk - $cible->getDef());
         }
 
-        return  $cible->setHp($damage);
+        $cible->setHp($damage);
     }
 }

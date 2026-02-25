@@ -7,10 +7,10 @@ const rageBtn = document.querySelector("#rage-btn");
 const manaBtn = document.querySelector("#mana-btn");
 
 // textContent Variables
-const heroHpValue = document.querySelector("#hero-hp-value");
-const heroManaValue = document.querySelector("#hero-rage-value");
-const heroRageValue = document.querySelector("#hero-mana-value");
-const monsterHpValue = document.querySelector("#monster-hp-value");
+const heroHpValue = document.querySelector("#hero-hp");
+const heroManaValue = document.querySelector("#hero-mana");
+const heroRageValue = document.querySelector("#hero-rage");
+const monsterHpValue = document.querySelector("#monster-hp");
 const finalResult = document.querySelector("#final-result");
 
 //  btn click listener
@@ -68,14 +68,6 @@ function sendAction(type) {
     });
 }
 
-function nextFight(data) {
-  document.body.style.backgroundImage = `url('${data["nextMonsterBackground"]}')`;
-  document.querySelector("#monster-img").src = data["nextMonsterCharacterImg"];
-  document.querySelector("#monster-name").textContent = data["nextMonsterName"];
-  document.querySelector("#monster-atk").textContent = data["nextMonsterAtk"];
-  document.querySelector("#monster-def").textContent = data["nextMonsterDef"];
-}
-
 function updateScreenInfos(data) {
   // error message
   if (data["error"]) {
@@ -83,12 +75,21 @@ function updateScreenInfos(data) {
   }
 
   //   update if exist
-  if (data["rageAttack"]) {
-    heroRageValue.textContent = data["heroRage"];
+  if (data["updateHeroRageAttack"] !== undefined) {
+    heroRageValue.textContent = `Rage: ${data["updateHeroRageAttack"]}`;
+    
+    if (data["updateHeroRageAttack"] === 0) {
+      rageBtn.disabled = true;
+      rageBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
   }
 
-  if (data["manaAttack"]) {
-    heroManaValue.textContent = data["heroMana"];
+  if (data["updateHeroManaAttack"] !== undefined) {
+    heroManaValue.textContent = `Mana: ${data["updateHeroManaAttack"]}`;
+    if (data["updateHeroManaAttack"] === 0) {
+      manaBtn.disabled = true;
+      manaBtn.classList.add("opacity-50", "cursor-not-allowed");
+    }
   }
 
   //   Combat result
@@ -111,7 +112,20 @@ function updateScreenInfos(data) {
 
     setTimeout(() => {
       nextFight(data);
-    }, 5000);
+      finalResult.textContent = "";
+      atkBtn.disabled = false;
+      atkBtn.classList.remove("opacity-50", "cursor-not-allowed");
+
+      if (rageBtn) {
+        rageBtn.disabled = false;
+        rageBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+
+      if (manaBtn) {
+        manaBtn.disabled = false;
+        manaBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+    }, 4000);
   }
 
   if (data["combatStatus"] === "You lose") {
@@ -141,5 +155,26 @@ function updateScreenInfos(data) {
 
   setTimeout(() => {
     heroHpValue.textContent = data["updateHeroHp"];
-  }, 1500);
+  }, 1000);
+}
+
+function nextFight(data) {
+  document.querySelector("#hero-hp").textContent = data["resetHeroHp"];
+
+  if (data["resetHeroMana"] !== undefined) {
+    document.querySelector("#hero-mana").textContent =
+      `Mana: ${data["resetHeroMana"]}`;
+  }
+
+  if (data["resetHeroRage"] !== undefined) {
+    document.querySelector("#hero-rage").textContent =
+      `Rage: ${data["resetHeroRage"]}`;
+  }
+
+  document.body.style.backgroundImage = `url('${data["nextMonsterBackground"]}')`;
+  document.querySelector("#monster-img").src = data["nextMonsterCharacterImg"];
+  document.querySelector("#monster-name").textContent = data["nextMonsterName"];
+  document.querySelector("#monster-hp").textContent = data["nextMonsterHp"];
+  document.querySelector("#monster-atk").textContent = data["nextMonsterAtk"];
+  document.querySelector("#monster-def").textContent = data["nextMonsterDef"];
 }

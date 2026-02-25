@@ -56,15 +56,15 @@ $monstersArray = [];
 $monstersArray[] = $monster->getId();
 
 
-
+// actions with attack
 if ($data['action'] === 'attack') {
+
     $hero->attack($monster);
 
     if ($monster->getHp() <= 0) {
-
         $monsterRepo = new MonsterRepository($db, new MonsterMapper);
-        $monsters = $monsterRepo->findAll();
 
+        $monsters = $monsterRepo->findAll();
         shuffle($monsters);
         $monsterShuffle = $monsters[0];
 
@@ -76,17 +76,30 @@ if ($data['action'] === 'attack') {
         $monstersArray[] = $monsterShuffle->getId();
         $_SESSION['monsterCharacter'] = $monsterShuffle;
 
-        echo json_encode([
+        // Reset ressources selon le type
+        $resetData = [
             'updateHeroHp' => $hero->getHp(),
             'updateMonsterHp' => $monster->getHp(),
+            'resetHeroHp' => $hero->getMaxHp(),
             'combatStatus' => 'You win',
             'nextMonsterName' => $monsterShuffle->getName(),
+            'nextMonsterHp' => $monsterShuffle->getHp(),
             'nextMonsterAtk' => $monsterShuffle->getAtk(),
             'nextMonsterDef' => $monsterShuffle->getDef(),
             'nextMonsterType' => $monsterShuffle->getType(),
             'nextMonsterBackground' => $monsterShuffle->getBackgroundFight(),
             'nextMonsterCharacterImg' => $monsterShuffle->getCharacterImg(),
-        ]);
+        ];
+
+        if ($hero instanceof Guerrier) {
+            $hero->setRage($hero->getMaxRage());
+            $resetData['resetHeroRage'] = $hero->getRage();
+        }
+        if ($hero instanceof Magician) {
+            $hero->setMana($hero->getMaxMana());
+            $resetData['resetHeroMana'] = $hero->getMana();
+        }
+        echo json_encode($resetData);
         exit();
     }
 
@@ -107,4 +120,132 @@ if ($data['action'] === 'attack') {
         'updateMonsterHp' => $monster->getHp(),
         'combatStatus' => 'in process'
     ]);
+    exit();
+}
+
+// actions with rage
+if ($data['action'] === 'rage') {
+
+    $hero->rageAttack($monster);
+
+    if ($monster->getHp() <= 0) {
+        $monsterRepo = new MonsterRepository($db, new MonsterMapper);
+        $monsters = $monsterRepo->findAll();
+        shuffle($monsters);
+        $monsterShuffle = $monsters[0];
+
+        if (in_array($monsterShuffle->getId(), $monstersArray)) {
+            shuffle($monsters);
+            $monsterShuffle = $monsters[0];
+        }
+
+        $monstersArray[] = $monsterShuffle->getId();
+        $_SESSION['monsterCharacter'] = $monsterShuffle;
+
+        $resetData = [
+            'updateHeroHp' => $hero->getHp(),
+            'updateMonsterHp' => $monster->getHp(),
+            'resetHeroHp' => $hero->getMaxHp(),
+            'combatStatus' => 'You win',
+            'nextMonsterName' => $monsterShuffle->getName(),
+            'nextMonsterHp' => $monsterShuffle->getHp(),
+            'nextMonsterAtk' => $monsterShuffle->getAtk(),
+            'nextMonsterDef' => $monsterShuffle->getDef(),
+            'nextMonsterType' => $monsterShuffle->getType(),
+            'nextMonsterBackground' => $monsterShuffle->getBackgroundFight(),
+            'nextMonsterCharacterImg' => $monsterShuffle->getCharacterImg(),
+        ];
+
+        if ($hero instanceof Guerrier) {
+            $hero->setRage($hero->getMaxRage());
+            $resetData['resetHeroRage'] = $hero->getRage();
+        }
+
+        echo json_encode($resetData);
+        exit();
+    }
+
+    $monster->attack($hero);
+
+    if ($hero->getHp() <= 0) {
+        echo json_encode([
+            'updateHeroHp' => $hero->getHp(),
+            'updateMonsterHp' => $monster->getHp(),
+            'updateHeroRageAttack' => $monster->getRage(),
+            'combatStatus' => 'You lose'
+        ]);
+        exit();
+    }
+
+
+    echo json_encode([
+        'updateHeroHp' => $hero->getHp(),
+        'updateHeroRageAttack' => $hero->getRage(),
+        'updateMonsterHp' => $monster->getHp(),
+        'combatStatus' => 'in process'
+    ]);
+    exit();
+}
+
+// actions with mana
+if ($data['action'] === 'mana') {
+
+    $hero->manaAttack($monster);
+
+    if ($monster->getHp() <= 0) {
+        $monsterRepo = new MonsterRepository($db, new MonsterMapper);
+        $monsters = $monsterRepo->findAll();
+
+        shuffle($monsters);
+        $monsterShuffle = $monsters[0];
+
+        if (in_array($monsterShuffle->getId(), $monstersArray)) {
+            shuffle($monsters);
+            $monsterShuffle = $monsters[0];
+        }
+
+        $monstersArray[] = $monsterShuffle->getId();
+        $_SESSION['monsterCharacter'] = $monsterShuffle;
+
+        $resetData = [
+            'updateHeroHp' => $hero->getHp(),
+            'updateMonsterHp' => $monster->getHp(),
+            'resetHeroHp' => $hero->getMaxHp(),
+            'combatStatus' => 'You win',
+            'nextMonsterName' => $monsterShuffle->getName(),
+            'nextMonsterHp' => $monsterShuffle->getHp(),
+            'nextMonsterAtk' => $monsterShuffle->getAtk(),
+            'nextMonsterDef' => $monsterShuffle->getDef(),
+            'nextMonsterType' => $monsterShuffle->getType(),
+            'nextMonsterBackground' => $monsterShuffle->getBackgroundFight(),
+            'nextMonsterCharacterImg' => $monsterShuffle->getCharacterImg(),
+        ];
+
+        if ($hero instanceof Magician) {
+            $hero->setMana($hero->getMaxMana());
+            $resetData['resetHeroMana'] = $hero->getMana();
+        }
+        echo json_encode($resetData);
+        exit();
+    }
+
+    $monster->attack($hero);
+
+    if ($hero->getHp() <= 0) {
+        echo json_encode([
+            'updateHeroHp' => $hero->getHp(),
+            'updateMonsterHp' => $monster->getHp(),
+            'combatStatus' => 'You lose'
+        ]);
+        exit();
+    }
+
+
+    echo json_encode([
+        'updateHeroHp' => $hero->getHp(),
+        'updateHeroManaAttack' => $hero->getMana(),
+        'updateMonsterHp' => $monster->getHp(),
+        'combatStatus' => 'in process'
+    ]);
+    exit();
 }
