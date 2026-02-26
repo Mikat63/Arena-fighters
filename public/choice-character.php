@@ -36,7 +36,7 @@ $herosArray = $heroRepo->findAllByType();
                                 <div class="flex flex-row items-center justify-center mb-2">
                                     <h3 class="text-white font-family-oswald font-semibold text-[18px] md:text-[20px] "><?= htmlspecialchars(strip_tags($hero->getName())) ?></h3>
                                 </div>
-                                <img class="w-full h-auto max-h-60 md:max-h-80 object-contain" src="<?= htmlspecialchars(strip_tags($hero->getCharacterImg())) ?>" alt="Personnage <?= htmlspecialchars(strip_tags($hero->getName())) ?>">
+                                <img class="w-full h-auto max-h-60 md:max-h-80 object-contain" src="<?= htmlspecialchars(strip_tags($hero->getCharacterImg())) ?>" alt="Personnage <?= htmlspecialchars(strip_tags($hero->getName())) ?>" loading="lazy">
                             </div>
                         <?php
                         }
