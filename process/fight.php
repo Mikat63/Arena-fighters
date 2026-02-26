@@ -26,8 +26,6 @@ sanitizeDatas($data, 'action');
 
 $hero = $_SESSION['heroCharacter'];
 $monster = $_SESSION['monsterCharacter'];
-$monstersArray = [];
-$monstersArray[] = $monster->getId();
 
 
 // actions attacks
