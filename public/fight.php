@@ -1,8 +1,9 @@
 <?php
-session_start();
+
 require_once "../utils/db_connect.php";
 require_once "../utils/autoloader.php";
-
+session_start();
+require_once "../utils/is-character-selected.php";
 $title = "Fight";
 require_once "./partials/page-infos.php";
 
