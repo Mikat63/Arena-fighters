@@ -4,7 +4,7 @@
 //     // Base directory (src)
 //     $baseDir = __DIR__ . '/../src/';
 
-//     // Déterminer le répertoire en fonction du suffixe du nom de la classe
+//     // Determine the directory based on the class name suffix
 //     switch (true) {
 //         case substr($className, -10) === 'Repository':
 //             $directory = 'Repositories';
@@ -20,10 +20,10 @@
 //             break;
 //     }
 
-//     // Construire le chemin complet du fichier
+//     // Build the full file path
 //     $file = $baseDir . $directory . '/' . $className . '.php';
 
-//     // Charge le fichier si trouvé
+//     // Load the file if found
 //     if (file_exists($file)) {
 //         require $file;
 //     }
@@ -35,7 +35,7 @@ spl_autoload_register(function ($className) {
     // Base directory (src)
     $baseDir = __DIR__ . '/../src/';
 
-    // Déterminer le répertoire principal en fonction du suffixe
+    // Determine the main directory based on the suffix
     switch (true) {
         case substr($className, -10) === 'Repository':
             $directory = 'Repositories';
@@ -51,7 +51,7 @@ spl_autoload_register(function ($className) {
             break;
     }
 
-    // Recherche récursive dans le répertoire
+    // Recursive search in the directory
     $file = findFileRecursively($baseDir . $directory, $className . '.php');
 
     if ($file && file_exists($file)) {
@@ -61,6 +61,7 @@ spl_autoload_register(function ($className) {
 
 /**
  * Recherche un fichier récursivement dans un répertoire
+ * Search for a file recursively in a directory
  */
 function findFileRecursively(string $directory, string $filename): ?string
 {
@@ -68,13 +69,13 @@ function findFileRecursively(string $directory, string $filename): ?string
         return null;
     }
 
-    // Vérifier d'abord à la racine du répertoire
+    // First check at the root of the directory
     $directPath = $directory . '/' . $filename;
     if (file_exists($directPath)) {
         return $directPath;
     }
 
-    // Parcourir les sous-dossiers
+    // Browse subfolders
     $iterator = new RecursiveIteratorIterator(
         new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
         RecursiveIteratorIterator::SELF_FIRST

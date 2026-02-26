@@ -3,7 +3,7 @@
 class Monster extends Personnage
 {
 
-    public function __construct(int $id, string $name, int $hp,  int $atk,  int $def,  string $type, private string $backgroundFight, string $characterImg)
+    public function __construct(int $id, string $name, int $hp,  int $atk,  int $def,  string $type, protected string $backgroundFight, string $characterImg)
     {
         parent::__construct($id, $name, $hp, $atk, $def, $type,$characterImg);
     }
@@ -12,4 +12,11 @@ class Monster extends Personnage
     {
         return $this->backgroundFight;
     }
+
+    public function getId():int
+    {
+        return $this->id;
+    }
+
+  
 }

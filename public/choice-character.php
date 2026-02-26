@@ -1,4 +1,9 @@
 <?php
+session_start();
+unset(
+    $_SESSION['heroCharacter'],
+    $_SESSION['monsterCharacter']
+);
 require_once "../utils/db_connect.php";
 require_once "../utils/autoloader.php";
 
@@ -15,7 +20,7 @@ $herosArray = $heroRepo->findAllByType();
 
 <body class="w-full min-h-svh bg-[url('public/assets/backgrounds/home-bg.gif')] bg-cover bg-center bg-no-repeat">
     <main class="flex flex-col items-center pb-10 gap-8 pt-8">
-        <h1 class="font-family-oswald text-white text-[32px]">Choose your character</h1>
+        <h1 class="font-family-oswald text-white text-[32px]">Choisis ton personnage</h1>
 
         <div class="flex flex-col items-center gap-6 w-[90%] xl:flex-row xl:justify-center xl:items-start">
             <?php
@@ -27,7 +32,7 @@ $herosArray = $heroRepo->findAllByType();
                     <div class="flex flex-row gap-4 md:gap-6 justify-center flex-wrap md:flex-nowrap">
                         <?php
                         foreach ($heroArray as $hero) { ?>
-                            <div tabindex="0" class="heroCharacter w-[calc(50%-0.5rem)] md:w-48 shrink-0 cursor-pointer hover:scale-110 focus:scale-110 focus:outline-none" data-characterId="<?= htmlspecialchars(strip_tags($hero->getId())) ?>">
+                            <div tabindex="0" role="button" class="heroCharacter w-[calc(50%-0.5rem)] md:w-48 shrink-0 cursor-pointer hover:scale-110 focus:scale-110 focus:outline-none" data-characterId="<?= htmlspecialchars(strip_tags($hero->getId())) ?>">
                                 <div class="flex flex-row items-center justify-center mb-2">
                                     <h3 class="text-white font-family-oswald font-semibold text-[18px] md:text-[20px] "><?= htmlspecialchars(strip_tags($hero->getName())) ?></h3>
                                 </div>
