@@ -2,6 +2,7 @@
 
 class HeroRepository
 {
+    // hero repository
     public function __construct(private PDO $db, private HeroMapper $mapper) {}
 
     public function findAllByType(): array
